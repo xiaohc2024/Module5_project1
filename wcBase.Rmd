@@ -1,0 +1,155 @@
+---
+title: "Steak Preferences in the United States"
+subtitle: "Summary Report For the `r params$region` Region"
+author: "Hongchen Xiao"
+date: "`r Sys.Date()`"
+output: html_document
+params:
+  region: 
+    label: "Region:"
+    value: Mountain
+    input: select
+    choices: ["East North Central","East South Central", 
+              "Middle Atlantic","Mountain", "New England", 
+              "Pacific","South Atlantic", "West North Central",
+              "West South Central"]
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE }
+knitr::read_chunk("code/setup.R")
+```
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+```
+
+```{r loadData}
+```
+
+
+<center><hr>
+![](images/sunstar.png){width=50}
+![](images/sunstar.png){width=50}
+![](images/sunstar.png){width=50}
+![](images/sunstar.png){width=50}
+![](images/sunstar.png){width=50}
+<hr></center>
+
+
+
+```{r child= "text/backgroundSection.Rmd"}
+
+```
+
+```{r child= "text/purposeSection.Rmd"}
+
+```
+
+
+## Demographic Summary Tables
+
+The age categories of the `r nrow(sdat)` survey
+respondents were:
+
+```{r}
+# create table of the age categories
+tb <- sdat %>%
+  select(age) %>%
+  table() %>%
+  prop.table()*100
+
+# convert table to data frame
+dt <- as.data.frame(tb)
+
+# use kable from knitr package to make table
+# and use kable styling from kableExtra package
+knitr::kable(dt, format="html",
+             col.names=c("Ages","%"),
+             digits=2,
+             caption="Ages of Survey Respondents") %>%
+  kableExtra::kable_styling(bootstrap_options ="striped",
+                            full_width=FALSE)
+```
+
+The education levels of the `r nrow(sdat)` survey respondents were:
+
+```{r}
+# repeat for education
+tb <-sdat %>% 
+  select(educ) %>%
+  table() %>%
+  prop.table()*100
+
+dt <-as.data.frame(tb)
+
+knitr::kable(dt, format="html",
+             col.names=c("Education","%"),
+             digits=2,
+             caption="Education of Survey Respondents") %>%
+  kableExtra::kable_styling(bootstrap_options = "striped",
+                            full_width=FALSE)
+```
+
+
+The income levels of the `r nrow(sdat)` survey respondents were:
+
+```{r}
+# repeat for household income
+tb <-sdat %>% 
+  select(hhold_income) %>%
+  table() %>%
+  prop.table()*100
+
+dt <-as.data.frame(tb)
+
+knitr::kable(dt, format="html",
+             col.names=c("Income","%"),
+             digits=2,
+             caption="Income of Survey Respondents") %>%
+  kableExtra::kable_styling(bootstrap_options = "striped",
+                            full_width=FALSE)
+```
+
+
+## _OPTIONAL_ Demographics of Survey Respondents in a Merged Table
+
+This section is provided as an example of how to merge the three demographic summary tables for the `r nrow(sdat)` survey respondents above into a single merged table.
+
+```{r makeTable, code=readLines("code/makeTable.R")}
+```
+
+## Steak Preparation Preference by Gender
+
+Finally, here is a breakdown of the `r nrow(sdat)` survey respondents for the `r params$region` region of the US on how they prefer their steak to be prepared by gender.
+
+```{r}
+knitr::read_chunk("code/makeChart.R")
+```
+```{r makeCharts}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

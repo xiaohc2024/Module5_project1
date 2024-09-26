@@ -1,0 +1,5 @@
+## Background
+
+In May 2014, Walt Hickey at
+[538.com](http://fivethirtyeight.com/) published an
+article entitled ["How Americans Like Their Steak"](https://fivethirtyeight.com/features/how-americans-like-their-steak/). This article utilized survey data collected from 550 people which asked questions related to various risky activities, such as whether they speed in traffic, if they smoke or go skydiving, and if they prefer a riskier lottery. The survey also asked if they eat steak and if so, how they prefer their steak.
